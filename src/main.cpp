@@ -9,6 +9,7 @@
 #define FPS_DELAY 1000 / 120
 
 CRGB leds[NUM_LEDS];
+CRGBSet ledset(leds, NUM_LEDS);
 
 void setup() {
   // Initialize Serial port
@@ -24,14 +25,8 @@ void loop() {
   Serial.printf("INFO: %i\n", FPS_DELAY);
 
   EVERY_N_MILLIS(100) {
-    for (int j = 0; j < NUM_LEDS; j++) {
-      leds[j] = CRGB::Black;
-      leds[i + 1] = CRGB::Red;
-      leds[i + 2] = CRGB::Red;
-      leds[i + 3] = CRGB::Red;
-    }
-
-    leds[i] = CRGB::Red;
+    ledset = CRGB::Black;
+    ledset(i, i + 3) = CRGB::Red;
     i++;
 
     if (i >= NUM_LEDS) i = 0;
