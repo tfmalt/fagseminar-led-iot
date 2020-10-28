@@ -19,20 +19,15 @@ void setup() {
   FastLED.addLeds<SK9822, DATA_PIN, CLOCK_PIN, BGR>(leds, NUM_LEDS);
 }
 
-int i = 0;
 void loop() {
   // The almost simplest possible loop
-  Serial.printf("INFO: %i\n", FPS_DELAY);
+  // Serial.printf("INFO: %i\n", FPS_DELAY);
 
-  EVERY_N_MILLIS(100) {
-    leds[i] = CRGB::Red;
-    i++;
-
-    if (i >= NUM_LEDS) i = 0;
-  }
+  uint8_t pos = beatsin8(24, 0, NUM_LEDS - 1);
+  leds[pos] = CRGB::Red;
 
   EVERY_N_MILLIS(FPS_DELAY) {
-    ledset.fadeToBlackBy(8);
+    ledset.fadeToBlackBy(32);
     FastLED.show();
   }
 }
