@@ -17,10 +17,7 @@ DEFINE_GRADIENT_PALETTE(fagseminar_gp){
     255, 0,   128, 255   // cyan-ish
 };
 
-// uint8_t color = 0;
-
 CRGB leds[NUM_LEDS];
-CRGBSet ledset(leds, NUM_LEDS);
 CRGBPalette16 pal = fagseminar_gp;
 
 void setup() {
@@ -33,17 +30,9 @@ void setup() {
 
 void loop() {
   // The almost simplest possible loop
-  // Serial.printf("INFO: %i\n", FPS_DELAY);
+  uint8_t step = 256 / NUM_LEDS;
 
-  // sine curve that pulsates with a given beats per minute:
-  uint8_t pos = beatsin8(24, 0, NUM_LEDS - 1);
-  uint8_t gradient_index = pos * (256 / NUM_LEDS);
+  fill_palette(leds, NUM_LEDS, 0, step, pal, 255, LINEARBLEND);
 
-  // Hue (Color), Saturation, Value (Brightness)
-  leds[pos] = ColorFromPalette(pal, gradient_index);
-
-  EVERY_N_MILLIS(FPS_DELAY) {
-    ledset.fadeToBlackBy(32);
-    FastLED.show();
-  }
+  EVERY_N_MILLIS(FPS_DELAY) { FastLED.show(); }
 }
