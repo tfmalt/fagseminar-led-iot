@@ -8,10 +8,20 @@
 #define FPS 120
 #define FPS_DELAY 1000 / 120
 
-uint8_t color = 0;
+DEFINE_GRADIENT_PALETTE(fagseminar_gp){
+    0,   255, 0,   0,    // red
+    8,   255, 0,   0,    // still red
+    64,  192, 0,   255,  // purple-ish
+    192, 0,   0,   255,  // blue
+    248, 0,   128, 255,  // cyan-ish
+    255, 0,   128, 255   // cyan-ish
+};
+
+// uint8_t color = 0;
 
 CRGB leds[NUM_LEDS];
 CRGBSet ledset(leds, NUM_LEDS);
+CRGBPalette16 pal = fagseminar_gp;
 
 void setup() {
   // Initialize Serial port
@@ -27,12 +37,12 @@ void loop() {
 
   // sine curve that pulsates with a given beats per minute:
   uint8_t pos = beatsin8(24, 0, NUM_LEDS - 1);
+  uint8_t gradient_index = pos * (256 / NUM_LEDS);
 
   // Hue (Color), Saturation, Value (Brightness)
-  leds[pos] = CHSV(color, 255, 255);
+  leds[pos] = ColorFromPalette(pal, gradient_index);
 
   EVERY_N_MILLIS(FPS_DELAY) {
-    color++;
     ledset.fadeToBlackBy(32);
     FastLED.show();
   }
