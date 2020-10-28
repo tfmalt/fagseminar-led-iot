@@ -8,6 +8,8 @@
 #define FPS 120
 #define FPS_DELAY 1000 / 120
 
+uint8_t color = 0;
+
 CRGB leds[NUM_LEDS];
 CRGBSet ledset(leds, NUM_LEDS);
 
@@ -23,10 +25,14 @@ void loop() {
   // The almost simplest possible loop
   // Serial.printf("INFO: %i\n", FPS_DELAY);
 
+  // sine curve that pulsates with a given beats per minute:
   uint8_t pos = beatsin8(24, 0, NUM_LEDS - 1);
-  leds[pos] = CRGB::Red;
+
+  // Hue (Color), Saturation, Value (Brightness)
+  leds[pos] = CHSV(color, 255, 255);
 
   EVERY_N_MILLIS(FPS_DELAY) {
+    color++;
     ledset.fadeToBlackBy(32);
     FastLED.show();
   }
