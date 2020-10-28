@@ -31,6 +31,6 @@ void loop() {
   i++;
 
   if (i >= NUM_LEDS) i = 0;
-  FastLED.show();
-  delay(FPS_DELAY);
+
+  EVERY_N_MILLIS(FPS_DELAY) { FastLED.show(); }
 }
