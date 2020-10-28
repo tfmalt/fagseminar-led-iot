@@ -26,6 +26,9 @@ void loop() {
   EVERY_N_MILLIS(100) {
     for (int j = 0; j < NUM_LEDS; j++) {
       leds[j] = CRGB::Black;
+      leds[i + 1] = CRGB::Red;
+      leds[i + 2] = CRGB::Red;
+      leds[i + 3] = CRGB::Red;
     }
 
     leds[i] = CRGB::Red;
