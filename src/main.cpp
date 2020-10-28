@@ -25,12 +25,14 @@ void loop() {
   Serial.printf("INFO: %i\n", FPS_DELAY);
 
   EVERY_N_MILLIS(100) {
-    ledset = CRGB::Black;
-    ledset(i, i + 3) = CRGB::Red;
+    leds[i] = CRGB::Red;
     i++;
 
     if (i >= NUM_LEDS) i = 0;
   }
 
-  EVERY_N_MILLIS(FPS_DELAY) { FastLED.show(); }
+  EVERY_N_MILLIS(FPS_DELAY) {
+    ledset.fadeToBlackBy(8);
+    FastLED.show();
+  }
 }
