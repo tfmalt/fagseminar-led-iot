@@ -23,14 +23,16 @@ void loop() {
   // The almost simplest possible loop
   Serial.printf("INFO: %i\n", FPS_DELAY);
 
-  for (int j = 0; j < NUM_LEDS; j++) {
-    leds[j] = CRGB::Black;
+  EVERY_N_MILLIS(100) {
+    for (int j = 0; j < NUM_LEDS; j++) {
+      leds[j] = CRGB::Black;
+    }
+
+    leds[i] = CRGB::Red;
+    i++;
+
+    if (i >= NUM_LEDS) i = 0;
   }
-
-  leds[i] = CRGB::Red;
-  i++;
-
-  if (i >= NUM_LEDS) i = 0;
 
   EVERY_N_MILLIS(FPS_DELAY) { FastLED.show(); }
 }
