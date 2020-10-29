@@ -12,3 +12,17 @@ If anyone asks me to add better instructions I will try to add them.
 ## My FastLED based bookshelf project
 This workshop is based on the work I did creating audio responsive led lights for my kids bedroom. You can find that project here:
 https://github.com/tfmalt/esp32-led-bookshelf
+
+## Using the repository to walk through the examples
+The workshop is split into 12 steps, with a git tag for each step. To go to the first step, first clone the repository.
+```
+git clone 
+```
+
+Then you can checkout the first step:
+```
+git checkout tags/v0.0.1
+```
+
+The steps are named v0.0.1 through v0.0.12
+
