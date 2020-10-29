@@ -16,7 +16,7 @@ https://github.com/tfmalt/esp32-led-bookshelf
 ## Using the repository to walk through the examples
 The workshop is split into 12 steps, with a git tag for each step. To go to the first step, first clone the repository.
 ```
-git clone 
+git clone https://github.com/tfmalt/fagseminar-led-iot.git
 ```
 
 Then you can checkout the first step:
